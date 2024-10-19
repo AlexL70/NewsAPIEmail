@@ -2,10 +2,14 @@ import requests as req
 import os, email.mime.text as mimetext, email.mime.message as mimemessage
 from send_email import send_email
 
+SEARCH_LANG="en"
+PAGE_SIZE=20
 SEARCH_STRING="israel"
 SEARCH_DATE="2024-10-18"
 NEWSAPI_KEY = os.environ.get("NEWSAPI_KEY")
-URL = f"https://newsapi.org/v2/everything?q={SEARCH_STRING}&from={SEARCH_DATE}&sortBy=publishedAt&apiKey={NEWSAPI_KEY}"
+URL = f"https://newsapi.org/v2/everything?q={SEARCH_STRING}&from={SEARCH_DATE}" \
+    f"&language={SEARCH_LANG}&pageSize={PAGE_SIZE}" \
+    f"&sortBy=publishedAt&apiKey={NEWSAPI_KEY}"
 
 r = req.get(URL)
 content = r.json()
